@@ -10,10 +10,5 @@ export default {
 }
 </script>
 
-<style scoped>
-header {
-  background-color: #f3f3f3;
-  padding: 10px 20px;
-  text-align: center;
-}
-</style>
+
+

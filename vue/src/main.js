@@ -3,8 +3,10 @@
 
 // 必要なライブラリとコンポーネントをインポート
 import { createApp } from 'vue';
+import './assets/reset.css';
 import App from './App.vue';
 import router from './router';
+
 
 //アプリケーションインスタンスを作成
 const app = createApp(App);
