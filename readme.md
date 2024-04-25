@@ -23,9 +23,9 @@ components/
 │   └─ SiteList.vue　サイト一覧のテーブル  
 │  
 ├─ task/　タスク管理画面用  
-│   └─ TaskManager.vue  タスク管理画面のルートコンポーネント 
+│   └─ TaskManager.vue  タスク管理画面のルートコンポーネント   
 │  
-└─ video/動画管理画面用  
+└─ video/　動画管理画面用  
     └─ RefrenceVideos.vue  動画管理画面のルートコンポーネント   
 
 
@@ -33,8 +33,8 @@ components/
 ①feature/docker-setup：dockerの環境構築  
 ②feature/page-structure：基本的なページの作成  
 ③feature/main-site-management：サイト管理画面の作成  
-③feature/main-video-management：動画管理画面の作成  
-⑥feature/main-task-management：タスク管理画面の作成  
+④feature/main-video-management：動画管理画面の作成  
+⑤feature/main-task-management：タスク管理画面の作成  
 ,,,,,  
 
 
