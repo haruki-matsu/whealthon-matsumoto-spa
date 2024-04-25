@@ -81,8 +81,49 @@ h2{
   margin-top: 100px;
 }
 
-table{
-  margin-left: 40px;
+button {
+  cursor: pointer;
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #5C67F2;
+  color: white;
+  transition: background-color 0.3s;
+
+}
+
+button:hover {
+  background-color: #4a54e1;
+}
+
+.window {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f4f4f4;
 }
 
 </style>
