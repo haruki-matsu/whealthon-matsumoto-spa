@@ -16,7 +16,7 @@
           <td></td>
           <td></td>
           <td>
-            <button>編集</button>
+            <button @click="$emit('editSite')">編集</button>
             <button>削除</button>
           </td>
         </tr>

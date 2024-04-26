@@ -1,6 +1,6 @@
 <template>
     <div class="table_container">
-        <form>
+        <form @submit="data_submit">
 
             <!-- サイト名入力フィールド -->
             <label for="name">動画名:</label>
@@ -26,12 +26,26 @@
             <button type="submit">保存</button>
 
             <!-- キャンセルボタン-->
-            <button >キャンセル</button>
+            <button @click="$emit('closeWindow')">キャンセル</button>
 
         </form>
     
     </div>
   </template>
+
+<script>
+export default {
+  methods: {
+    data_submit() {
+      this.$emit('saveSite');  // 親コンポーネントに 'saveSite' イベントを通知
+    }
+  }
+}
+</script>
+
+
+
+
 
 <style scoped>
 form {
@@ -40,8 +54,6 @@ form {
   max-width: 500px;
   margin: auto;
 }
-
-
 
 </style>
 
