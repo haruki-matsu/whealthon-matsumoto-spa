@@ -4,19 +4,19 @@
 
             <!-- サイト名入力フィールド -->
             <label for="name">動画名:</label>
-            <input id="name" required> 
+            <input id="name" v-model="video.name" required> 
 
             <!-- サイトURL入力フィールド -->
             <label for="url">動画URL:</label>
-            <input id="url" required> 
+            <input id="url" v-model="video.url" required> 
 
             <!-- 動画視聴の目的入力フィールド -->
             <label for="purpose">動画を視聴する目的:</label>
-            <input id="purpose" required>
+            <input id="purpose" v-model="video.purpose" required>
 
             <!-- サイトの使用頻度入力フィールド -->
             <label for="frequency">使用頻度:</label>
-            <select id="frequency" required>
+            <select id="frequency" v-model="video.frequency" required>
                 <option value="頻繁">頻繁</option>
                 <option value="普通">普通</option>
                 <option value="稀">稀</option>
@@ -35,13 +35,23 @@
 
 <script>
 export default {
+  props: ['current_video'],
+  data() {
+    return {
+      video: { ...this.current_video }
+    };
+  },
+
   methods: {
     data_submit() {
-      this.$emit('saveVideo');  
+      this.$emit('saveVideo',this.video);  
     }
   }
 }
 </script>
+
+
+
 
 
 

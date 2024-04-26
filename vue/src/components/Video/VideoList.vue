@@ -11,23 +11,43 @@
           </tr>
         </thead>
         <tbody>
-            <tr>
-          <td><button>GO</button></td>
-          <td></td>
-          <td></td>
-          <td>
-            <button @click="$emit('editVideo')">編集</button>
-            <button>削除</button>
-          </td>
+          <tr v-for="(video, index) in videos" :key="index"
+          :class="getFrequencyClass(video.frequency)">
+            <td><button>GO</button></td>
+            <td>{{ video.name }}</td>
+            <td>{{ video.purpose }}</td>
+            <td>
+              <button @click="$emit('editVideo',index)">編集</button>
+              <button @click="$emit('deleteVideo', index)">削除</button>
+            </td>
         </tr>
-          
         </tbody>
   
-        </table>
-      </div>
-    </template>
+      </table>
+    </div>
+</template>
 
-    <style>
+<script>
+export default {
+  props: ['videos'], 
+
+  methods: {
+// 使用頻度によって、その行の背景を変えるメゾット
+  getFrequencyClass(frequency) {
+    switch(frequency) {
+      case '頻繁': return 'frequency-frequent';
+      case '普通': return 'frequency-normal';
+      case '稀': return 'frequency-rare';
+      default: return '';
+      }
+  }}
+}
+
+</script>
+
+
+
+<style>
 
 .table_container {
   overflow-x: auto; 
@@ -55,5 +75,16 @@ th:nth-child(2), td:nth-child(2) { width: 15%; }
 th:nth-child(3), td:nth-child(3) { width: 30%; } 
 th:nth-child(4), td:nth-child(4) { width: 15%; } 
 
+.frequency-frequent {
+  background-color: #f97b7b; 
+}
+
+.frequency-normal {
+  background-color: #fea3a3; 
+}
+
+.frequency-rare {
+  background-color: #f9dcdc; 
+}
 
 </style>
