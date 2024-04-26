@@ -37,7 +37,7 @@
 export default {
   methods: {
     data_submit() {
-      this.$emit('saveSite');  // 親コンポーネントに 'saveSite' イベントを通知
+      this.$emit('saveVideo');  
     }
   }
 }
