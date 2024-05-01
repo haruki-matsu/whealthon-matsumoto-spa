@@ -43,18 +43,23 @@ export default {
   },
 
   methods: {
+    //親コンポーネントにデータを送信
     data_submit() {
       this.$emit('saveVideo',this.video);  
     }
+  },
+
+  watch: { 
+    current_video: { 
+      handler(newVal) { 
+        this.video = { ...newVal };
+      },
+      immediate: true
+    }
   }
 }
+
 </script>
-
-
-
-
-
-
 
 
 <style scoped>

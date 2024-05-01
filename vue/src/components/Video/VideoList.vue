@@ -6,14 +6,15 @@
           <tr>
             <th></th>
             <th>動画名</th>
-            <th>内容</th>
+            <th>使用目的</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
+          <!-- 動画のデータを動的にリスト表示 -->
           <tr v-for="(video, index) in videos" :key="index"
           :class="getFrequencyClass(video.frequency)">
-            <td><button>GO</button></td>
+            <td><button @click="$emit('playVideo',video.url)">再生</button></td>
             <td>{{ video.name }}</td>
             <td>{{ video.purpose }}</td>
             <td>
