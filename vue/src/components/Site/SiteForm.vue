@@ -17,7 +17,7 @@
 
       <!-- 画像ファイル入力フィールド -->
       <label for="image">サイト用の画像:</label>
-      <input id="image" type="file" @change="image_change" required>
+      <input id="image" type="file" @change="image_change" >
 
 
       <!-- サイト目的入力フィールド -->
