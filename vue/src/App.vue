@@ -1,129 +1,49 @@
 <template>
-  <div id="app">
-    <!-- ヘッダー -->
-    <AppHeader class="header"/>
+  <div>
+    <!-- 青色背景/文字は白/中央揃え/文字はh4の形式/パディング3 -->
+    <header class="bg-success text-white text-center h4 p-3">
+      <img src="@/assets/PC.png" alt="木のイラスト" class="ml-2 header-img">
+      学習用サイト
 
-    <!-- ヘッダーの下に配置されるサイドバーとメインコンテンツ部分 -->
-    <div class="content">
-      <!-- サイドバー -->
-      <AppSidebar class="sidebar"/>
-
-      <!-- メインコンテンツ -->
-      <router-view class="main_content"/>
+    </header>
+    <!-- コンテナ全幅使用/上マージン4 -->
+    <div class="container-fluid mt-4">
+      <!-- コンテナを横に配置(①ナビバー②メインコンテンツ) -->
+      <div class="row">
+        <!-- 左側のナビゲーションメニュー、12/2分割 -->
+        <div class="col-md-2">
+          <!-- 内部グループ化/縦に並べる/選択時の色変更/背景青/タブリストが並ぶことの説明/文字色白//タブリストが並ぶ説明-->
+          <div class="nav flex-column nav-pills bg-success text-white" id="v-pills-tab" role="tablist">
+            <!-- /tasksに飛ぶ//リンク/文字白// -->
+            <router-link to="/tasks" class="nav-link text-white" role="tab" active-class="active">タスク管理</router-link>
+            <!-- /sitesに飛ぶ -->
+            <router-link to="/sites" class="nav-link text-white" role="tab" active-class="active">参考サイト</router-link>
+            <!-- /videosに飛ぶ -->
+            <router-link to="/videos" class="nav-link text-white" role="tab" active-class="active">参考動画</router-link>
+          </div>
+          <img src="@/assets/img_tree.jpg" alt="木のイラスト" class="img-fluid mt-3 d-none d-md-block">
+        </div>
+        <!-- メインコンテンツエリア -->
+        <div class="col-md-9">
+          <router-view />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
-
-<script>
-// ヘッダーとサイドバーのコンポーネントのインポートとエクスポート
-import AppHeader from './components/Header.vue';
-import AppSidebar from './components/Sidebar.vue';
-
-export default {
-  components: {
-    AppHeader,  
-    AppSidebar 
+<style scoped>
+.nav-link.active {
+  background-color: #004d40; 
+}
+  .header-img {
+    width: 50px;
+    height: auto;
+    margin-left: 10px; 
   }
-}
-</script>
-
-
-<style>
-/* ヘッダー */
-.header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 80px; 
-  text-align: center;
-  background-color: #f3f3f3;
-}
-
-h1{
-  position: absolute; 
-  top: 50%; 
-  left: 50%; 
-  transform: translate(-50%, -50%);
-  color: black;
-  font-size: 2rem;
-
-}
-
-
-/* サイドバー */
-.sidebar {
-  position: fixed;
-  top: 80px; 
-  left: 0;
-  width: 200px; 
-  height: calc(100% - 80px); 
-  background-color: #ddd;
-  color: white;
-  padding: 20px;
-}
-
-.sidebar a {
-    display: block;
-    margin: 10px 0;
-}
-
-
-
-/* メインコンテンツ */
-.main_content{
-  margin-top: 80px;
-  margin-left: 210px; 
-} 
-
-h2{
-  margin-left: 20px;
-  margin-top: 100px;
-}
-
-button {
-  cursor: pointer;
-  padding: 10px 20px;
-  margin: 5px;
-  border: none;
-  border-radius: 5px;
-  background-color: #5C67F2;
-  color: white;
-  transition: background-color 0.3s;
-
-}
-
-button:hover {
-  background-color: #4a54e1;
-}
-
-.window {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 20px;
-  border: 1px solid #ccc;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  z-index: 1000;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-th, td {
-  text-align: left;
-  padding: 8px;
-  border-bottom: 1px solid #ddd;
-}
-
-th {
-  background-color: #f4f4f4;
-}
 
 </style>
+
+
+
+
