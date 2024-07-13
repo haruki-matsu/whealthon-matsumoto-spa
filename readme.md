@@ -26,7 +26,9 @@ components/
 │   └─ TaskManager.vue  タスク管理画面のルートコンポーネント   
 │  
 └─ video/　動画管理画面用  
-    └─ RefrenceVideos.vue  動画管理画面のルートコンポーネント   
+    ├─ RefrenceVideo.vue　動画管理画面のルートコンポーネント  
+    ├─ VideoForm.vue　編集、登録するフォーム  
+    └─ VideoList.vue　動画一覧のテーブル  
 
 
 ### ブランチ構成
