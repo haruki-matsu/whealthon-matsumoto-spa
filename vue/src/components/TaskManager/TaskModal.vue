@@ -87,10 +87,15 @@ export default {
       this.errors = {};
       if (!this.task.name) {
         this.errors.name = 'タスク名は必須です。';
-      }
+      }else if (this.task.name.length > 20) {
+      this.errors.name = '概要は20文字以下で入力してください。';
+      valid = false;
+    }
+
       if (!this.task.category) {
         this.errors.category = 'カテゴリーを選択してください。';
       }
+      
       if (!this.task.plannedEndDate) {
         this.errors.plannedEndDate = '期限は必須です。';
       }

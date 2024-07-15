@@ -4,34 +4,33 @@ import { createRouter, createWebHistory } from 'vue-router';
 import TaskManager from '../components/TaskManager/TaskManager.vue';
 import ReferenceSites from '../components/ReferenceSites/ReferenceSites.vue';
 import ReferenceVideos from '../components/ReferenceVideos/ReferenceVideos.vue';
+import Design from '../components/Design/Design.vue';
+import parallax from '../components/Design/parallax.vue';
+import Fade from '../components/Design/fade.vue';
+import texture from '../components/Design/texture.vue';
+
+
 
 //ルートの設定
 const routes = [
+  { path: '/', redirect: '/tasks' },
+  { path: '/tasks', name: 'TaskManager', component: TaskManager },
+  { path: '/sites', name: 'ReferenceSites', component: ReferenceSites },
+  { path: '/videos', name: 'ReferenceVideos', component: ReferenceVideos },
   {
-    //初期時はtasksにリダイレクト
-    path: '/',
-    redirect: '/tasks'
-  },
-  {
-    //name:ルート名/component:active時に表示されるコンポーネント
-    //タスクボタンクリックで、タスク管理コンポーネントを表示
-    path: '/tasks',
-    name: 'TaskManager',
-    component: TaskManager
-  },
-  {
-    //参考サイトボタンクリックで、参考サイトコンポーネントを表示
-    path: '/sites',
-    name: 'ReferenceSites',
-    component: ReferenceSites
-  },
-  {
-    //参考動画ボタンクリックで、参考動画コンポーネントを表示
-    path: '/videos',
-    name: 'ReferenceVideos',
-    component: ReferenceVideos
+    path: '/design',
+    component: Design,
+    children: [
+      { path: '', redirect: '/design/parallax' },
+      { path: 'parallax', name: 'parallax', component: parallax },
+      { path: 'fade', name: 'Fade', component: Fade },
+      { path: 'texture', name: 'texture', component: texture }
+    ]
   }
+  
 ];
+
+
 
 //ルーターインスタンス作成
 const router = createRouter({

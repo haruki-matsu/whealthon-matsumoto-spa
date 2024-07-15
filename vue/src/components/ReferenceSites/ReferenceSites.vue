@@ -1,54 +1,37 @@
 <template>
   <!-- コンポーネント全体 -->
-  <div class="table-responsive">
+  <div>
 
      <!-- 新規登録ボタン：入力ドフォームの表示  -->
-    <div class="d-flex justify-content-end mb-2">
+    <div class="d-flex justify-content-end mb-2 mt-2">
       <button class="btn btn-success" @click="openModal()">新規登録</button>
     </div>
     
     <!-- 入力フォームモーダル-->
     <reference-sites-modal v-if="showModal" :initialSite="currentSite" @close="showModal = false" @submit="addSite"></reference-sites-modal>
 
-    <!-- テーブル -->
-    <table class="table table-hover table-bordered">
-      <!-- テーブルヘッダー -->
-      <thead>
-        <tr>
-          <th class="col-1"></th>
-          <th class="col-3">サイト名</th>
-          <th class="col-4">サイト概要</th>
-          <th class="col-1">使用頻度</th>
-          <th class="col-2"></th>
-        </tr>
-      </thead>
-      <!-- テーブルボディー -->
-      <tbody>
-        <!-- sites配列をテーブルに挿入 -->
-        <tr v-for="(site, index) in sites" :key="index">
-          <!-- カテゴリ画像 -->
-          <td class="col-1"> 
-             <img :src="getImage(site.category)" alt="Category Image" style="width: 30px; height: auto;">
-          </td>
-          <!-- サイト名：クリックでサイトに飛ぶ -->
-          <td class="col-3"><a :href="site.url" target="_blank">{{ site.name || '-'}}</a></td>
-          <!-- サイト概要 -->
-          <td class="col-4">{{ site.contents || '-'}}</td>
-          <!-- 使用頻度 -->
-          <td class="col-1">{{ site.frequency || '-'}}</td>
-          <!-- 操作ボタン -->
-          <td class="col-2">
-            <!-- 変更ボタン(レコード毎)：入力フォームの表示/指定されたsiteの送信 -->
-            <button class="btn btn-primary btn-sm m-1" @click="openModal(site, index)">変更</button>
-
-            <!-- 削除ボタン(レコード毎)：指定されたsiteの削除-->
-            <button class="btn btn-danger btn-sm m-1" @click="deleteSite(index)">削除</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <!-- カード形式でテーブルの内容を表示 -->
+    <div class="row">
+      <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3" v-for="(site, index) in sites" :key="index">
+        <div class="card h-100 border border-sucsess" @click="navigateTo(site.url)" style="cursor: pointer;">
+          <img :src="getImage(site.category)" class="card-img-top" alt="Category Image">
+          <div class="card-body custom-bg  d-flex flex-column">
+            <h5 class="card-title text-left">{{ site.name || '-'}}</h5>
+            <p class="card-text text-left">{{ site.contents || '-'}}</p>
+            <div class="mt-auto">
+              <div class="d-flex justify-content-end">
+                <button class="btn btn-primary btn-sm me-1" @click.stop="openModal(site, index)">変更</button>
+                <button class="btn btn-danger btn-sm " @click.stop="deleteSite(index)">削除</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
+
+
 
 <script>
 //コンポーネントの読み込み
@@ -138,8 +121,53 @@ export default {
     getImage(category) {
       return this.imagePaths[category] || this.defaultImage;
     },
+    navigateTo(url) {
+    window.open(url, '_blank');
+  }
     
   }
 }
 </script>
 
+
+<style scoped>
+.card-img-top {
+  height: 75px;
+  width: 100%;   
+  object-fit: cover; 
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 1;
+}
+
+.card-body .card-title,
+.card-body .card-text {
+  text-align: left !important; 
+}
+
+.h100{
+  height:250px;
+}
+.mt-auto {
+  margin-top: auto;
+}
+
+.card-title {
+  font-size: 1rem; /* h5 のフォントサイズ */
+}
+
+.card-text {
+  font-size: 0.8rem; /* p のフォントサイズ */
+}
+
+.custom-bg {
+  background-image: url('@/assets/bg.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+</style>

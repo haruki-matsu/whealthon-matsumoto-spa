@@ -82,7 +82,11 @@ export default {
     if (!this.video.name) {
       this.errors.name = '動画名は必須です。';
       valid = false; // バリデーション失敗
+    }else if (this.video.name.length > 10) {
+      this.errors.name = '概要は10文字以下で入力してください。';
+      valid = false;
     }
+
     // URLのバリデーション(YouTube動画)
     if (!this.video.url) {
       this.errors.url = 'URLは必須です。';
@@ -96,6 +100,9 @@ export default {
     if (!this.video.contents) {
       this.errors.contents = '動画の概要は必須です。';
       valid = false; // バリデーション失敗
+    }else if (this.video.name.length > 20) {
+      this.errors.name = '概要は20文字以下で入力してください。';
+      valid = false;
     }
 
     // エラーがない場合にデータを送信

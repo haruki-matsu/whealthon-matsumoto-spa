@@ -1,7 +1,7 @@
 <template>
    <!-- モーダルの全体構造 -->
   <div class="modal" tabindex="-1" style="display: block;">
-    <div class="modal-dialog">
+    <div class="modal-dialog border">
       <div class="modal-content">
         <!-- モーダルヘッダー -->
         <div class="modal-header">
@@ -12,19 +12,19 @@
         <div class="modal-body">
           <!-- サイト名入力 -->
           <div class="mb-3">
-            <label for="siteName" class="form-label text-left">サイト名</label>
+            <label for="siteName" class="form-label text-start">サイト名</label>
             <input type="text" class="form-control" id="siteName" placeholder="サイト名を入力" v-model="site.name">
             <div v-if="errors.name" class="text-danger">{{ errors.name }}</div>
           </div>
           <!-- サイトURL -->
           <div class="mb-3">
-            <label for="siteUrl" class="form-label text-left">URL</label>
+            <label for="siteUrl" class="form-label text-start">URL</label>
             <input type="text" class="form-control" id="siteUrl" placeholder="URLを入力" v-model="site.url">
             <div v-if="errors.url" class="text-danger">{{ errors.url }}</div>
           </div>
           <!-- カテゴリー -->
           <div class="mb-3">
-            <label for="category" class="form-label text-left">カテゴリ</label>
+            <label for="category" class="form-label text-start">カテゴリ</label>
             <select id="category" class="form-select" v-model="site.category">
               <option value="">選択してください</option>
               <option value="エンジニア全般">エンジニア全般</option>
@@ -39,20 +39,9 @@
           </div>
           <!-- サイト内容 -->
           <div class="mb-3">
-            <label for="siteUsage" class="form-label text-left">サイト内容</label>
+            <label for="siteUsage" class="form-label text-start">サイト内容</label>
             <input type="text" class="form-control" id="siteUsage" placeholder="サイト内容を入力" v-model="site.contents">
             <div v-if="errors.contents" class="text-danger">{{ errors.contents }}</div>
-          </div>
-
-          <!-- 使用頻度 -->
-          <div class="mb-3">
-            <label for="category" class="form-label text-left">使用頻度</label>
-            <select id="category" class="form-select" v-model="site.frequency">
-              <option value="高">高い</option>
-              <option value="中">普通</option>
-              <option value="低">低い</option>
-            </select>
-            <div v-if="errors.frequency" class="text-danger">{{ errors.frequency }}</div>
           </div>
         </div>
         <!-- モーダルフッター -->
@@ -72,7 +61,7 @@ export default {
     // 親コンポーネントから渡されるサイトデータ
     initialSite: {
       type: Object,
-      default: () => ({ category: '', name: '', url: '', contents: '', frequency: '' })
+      default: () => ({ category: '', name: '', url: '', contents: '',})
     }
   },
   data() {
@@ -92,6 +81,9 @@ export default {
     if (!this.site.name) {
       this.errors.name = 'サイト名は必須です。';
       valid = false;
+      } else if (this.site.name.length > 10) {
+        this.errors.name = 'サイト名は10文字以下で入力してください。';
+        valid = false;
     }
     // URLのバリデーション(正しいフォーマット)
     if (!this.site.url) {
@@ -110,10 +102,8 @@ export default {
     if (!this.site.contents) {
       this.errors.contents = 'サイト内容は必須です。';
       valid = false;
-    }
-    // 使用頻度のバリデーション(必須)
-    if (!this.site.frequency) {
-      this.errors.frequency = '使用頻度は必須です。';
+    } else if (this.site.name.length > 20) {
+      this.errors.name = '概要は20文字以下で入力してください。';
       valid = false;
     }
 
