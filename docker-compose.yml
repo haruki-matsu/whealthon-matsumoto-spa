@@ -1,9 +1,12 @@
-version: '3.8'
-services:  
+version: '3.9'
+
+services:
   app:
-    build: .
-    ports: 
-      - "8080:8080"
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
-      - .:/app
-      - /app/vue/node_modules
+      - ./vue:/app
+    ports:
+      - "5173:5173"
+    command: /bin/sh -c "npm install && npm run dev -- --host 0.0.0.0"
